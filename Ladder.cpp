@@ -1,5 +1,5 @@
 #include "Ladder.h"
-#include "tinyxml/tinystr.h"
+#include "tinystr.h"
 #include <ctime>
 #include <cstdlib>
 #include <stdio.h>

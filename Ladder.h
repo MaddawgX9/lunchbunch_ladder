@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "Entity.h"
-#include "tinyxml/tinyxml.h"
+#include "tinyxml.h"
 
 class Ladder
 {
