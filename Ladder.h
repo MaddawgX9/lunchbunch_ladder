@@ -3,6 +3,7 @@
 #include "Entity.h"
 #include "tinyxml.h"
 
+
 class Ladder
 {
 private:
