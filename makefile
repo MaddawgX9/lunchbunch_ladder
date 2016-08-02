@@ -1,2 +1,19 @@
-all: lbl.cpp Entity.cpp Ladder.cpp tinyxml.cpp tinyxmlparser.cpp tinyxmlerror.cpp tinystr.cpp
-	g++ -std=c++11 -g lbl.cpp Entity.cpp Ladder.cpp tinyxml.cpp tinyxmlparser.cpp tinyxmlerror.cpp tinystr.cpp -o lbl
+CC=gcc
+CXX=g++
+RM=rm -f
+CPPFLAGS=-g
+
+APP_NAME=lunchbunch_ladder
+SRCS=
+OBJS=$(subst .cpp,.o,$(SRCS))
+
+all: $(APP_NAME)
+
+$(APP_NAME): $(OBJS)
+	$(CXX) -o $(APP_NAME) $(OBJS)
+
+%.o: %.cpp
+	g++ $(CPPFLAGS) -c $@ $<
+
+clean:
+	rm -f *.o lbl.exe
