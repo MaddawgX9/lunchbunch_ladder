@@ -3,20 +3,24 @@ CXX=g++
 RM=rm -f
 CPPFLAGS=-g -std=c++11
 
-APP_NAME=lunchbunch_ladder
-SRCS=$(wildcard *.cpp)
-OBJS=$(SRCS:.cpp=.o)
+OBJDIR=obj
+SRCDIR=src
+BINDIR=bin
+APP_NAME=bin/lunchbunch_ladder
+SRCS=$(wildcard src/*.cpp)
+OTMP=$(SRCS:.cpp=.o)
+OBJS=$(OTMP:src/%=obj/%)
 
 all: $(APP_NAME)
 
 $(APP_NAME): $(OBJS)
-	$(CXX) $(CPPFLAGS) -o $(APP_NAME) $(OBJS)
+	$(CXX) $(CPPFLAGS) -o $@ $^
 
 -include $(OBJS:.o=.d)
 
-%.o: %.cpp
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 	$(CXX) $(CPPFLAGS) -c $^ -o $@
-	$(CXX) -MM $(CPPFLAGS) $*.cpp > $*.d
+	$(CXX) -MM $(CPPFLAGS) $^ > $(OBJDIR)/$*.d
 
 clean:
-	rm -f *.o $(APP_NAME).exe *.d
+	rm -f $(OBJDIR)/*.o $(BINDIR)/$(APP_NAME).exe $(OBJDIR)/*.d
