@@ -1,0 +1,18 @@
+RULES:
+
+1. Initial Positions on the ladder should be assigned randomly and entered into the system in order.
+2. New Entities are added to the bottom.
+3. An entity may face off against any other entity within 5 spots on the ladder.
+4. If the lower ranked entity wins, the lower ranked entity takes the spot of the higher ranked entity, and the loser and all entities previously between the two move down one rank.
+5. The lower entity in a challenge goes first.
+6. In the case of a draw, the lower entity takes the rank just under the higher entity and all entities between the two move down.
+7. An entity cannot challenge the same entity twice in a row.
+
+
+
+//TODO -
+// Initial seeding randomize function
+// Localize Matches to within 5 ranks on the ladder
+// Rank swapping as result of wins
+// Report Tie functionality
+// Restrict entities from playing each other multiple times in a row
