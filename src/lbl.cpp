@@ -20,7 +20,9 @@ int main(int argc, char* argv[])
 	    cout << "1. Generate Matchup" << endl;
 	    cout << "2. Add Entity" << endl;
 	    cout << "3. Print Ladder" << endl;
-	    cout << "4. Save & Exit" << endl;
+	    cout << "4. Report Winner" << endl;
+	    cout << "5. Remove Entity" << endl;
+	    cout << "6. Save & Exit" << endl;
 	    string choice;
 	    getline(cin,choice);
 	    
@@ -41,6 +43,24 @@ int main(int argc, char* argv[])
 		ladder.print();
 	    }
 	    else if(choice=="4")
+	    {
+		string rank;
+		cout << endl;
+		ladder.print();
+		cout << "Input the rank of the winning entity: ";
+		getline(cin,rank);
+		ladder.report_winner(atoi(rank.c_str()));
+	    }
+	    else if(choice=="5")
+	    {
+		string rank;
+		cout << endl;
+		ladder.print();
+		cout << "Input the rank of the entity you wish to remove: ";
+		getline(cin,rank);
+		ladder.remove_entity_by_rank(atoi(rank.c_str()));
+	    }
+	    else if(choice=="6")
             {
 		ladder.save();
 		return 0;

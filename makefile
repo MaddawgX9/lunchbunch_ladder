@@ -19,6 +19,7 @@ $(APP_NAME): $(OBJS)
 -include $(OBJS:.o=.d)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
+	mkdir -p $(OBJDIR)
 	$(CXX) $(CPPFLAGS) -c $^ -o $@
 	$(CXX) -MM $(CPPFLAGS) $^ > $(OBJDIR)/$*.d
 

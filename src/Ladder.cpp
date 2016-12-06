@@ -189,10 +189,6 @@ Entity* Ladder::get_random_entity()
     uniform_int_distribution<int> dist(0,_entity_list.size()-1);
     int index=dist(mt);
     
-    /*    srand(time(0));   
-	  int random_num = rand();
-	  int index = random_num % _entity_list.size(); // for now not weighted
-    */
     Entity * entity=_entity_list[index];
     return entity;
 }
@@ -212,7 +208,50 @@ void Ladder::adjust_match_counts(Entity* entity_1,Entity* entity_2)
 	    entity->clear_weight_count();
 	    entity->inc_match_count();
 	}	
-	else
+	else if(entity->get_pending_match()=="")
 	    entity->inc_weight_count();
     }    
+}
+
+bool Ladder::remove_entity_by_rank(int rank)
+{
+    bool ret=false;
+    Entity* entity = _entity_list[rank-1];
+    if(entity)
+    {
+	delete entity;
+	_entity_list.erase(_entity_list.begin()+(rank-1));
+	ret=true;
+    }
+    return ret;
+}
+
+void Ladder::report_winner(int rank)
+{
+    Entity* w_entity=_entity_list[rank-1];
+    Entity* l_entity=0;
+    string pending_match=w_entity->get_pending_match();
+    if(pending_match!="")
+    	l_entity = get_entity_by_name(pending_match);
+    if(w_entity && l_entity)
+    {
+	w_entity->inc_wins();
+	w_entity->set_pending_match("");
+	l_entity->inc_losses();
+	l_entity->set_pending_match("");	
+    }
+}
+
+Entity* Ladder::get_entity_by_name(string name)
+{
+    vector<Entity*>::iterator cur = _entity_list.begin();
+    vector<Entity*>::iterator end = _entity_list.end();
+
+    for(;cur!=end;cur++)
+    {
+	Entity * entity = *cur;
+	if(entity->get_name().compare(name)==0)
+	    return entity;
+    }
+    return 0;
 }

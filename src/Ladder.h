@@ -23,5 +23,8 @@ public:
     void create_entity(string name);
     void generate_matchup();
     void adjust_match_counts(Entity* entity_1,Entity* entity_2);
+    bool remove_entity_by_rank(int rank);
+    void report_winner(int rank);
+    Entity* get_entity_by_name(string name);
     void print();
 };
