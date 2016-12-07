@@ -27,4 +27,5 @@ public:
     void report_winner(int rank);
     Entity* get_entity_by_name(string name);
     void print();
+    void randomize();
 };

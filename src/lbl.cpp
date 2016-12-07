@@ -22,7 +22,8 @@ int main(int argc, char* argv[])
 	    cout << "3. Print Ladder" << endl;
 	    cout << "4. Report Winner" << endl;
 	    cout << "5. Remove Entity" << endl;
-	    cout << "6. Save & Exit" << endl;
+	    cout << "6. Randomize Ladder" << endl;
+	    cout << "7. Save & Exit" << endl;
 	    string choice;
 	    getline(cin,choice);
 	    
@@ -61,6 +62,12 @@ int main(int argc, char* argv[])
 		ladder.remove_entity_by_rank(atoi(rank.c_str()));
 	    }
 	    else if(choice=="6")
+	    {
+		ladder.randomize();
+		cout << "Randomized Ladder: " << endl;
+		ladder.print();
+	    }
+	    else if(choice=="7")
             {
 		ladder.save();
 		return 0;

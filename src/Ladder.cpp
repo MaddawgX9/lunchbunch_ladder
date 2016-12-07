@@ -238,7 +238,7 @@ void Ladder::report_winner(int rank)
 	w_entity->inc_wins();
 	w_entity->set_pending_match("");
 	l_entity->inc_losses();
-	l_entity->set_pending_match("");	
+	l_entity->set_pending_match("");
     }
 }
 
@@ -254,4 +254,23 @@ Entity* Ladder::get_entity_by_name(string name)
 	    return entity;
     }
     return 0;
+}
+
+void Ladder::randomize()
+{
+    vector<Entity*> new_list;
+    vector<Entity*> old_list;
+    old_list=_entity_list;
+    while(old_list.size()>0)
+    {
+	random_device rd;
+	mt19937 mt(rd());
+	uniform_int_distribution<int> dist(0,old_list.size()-1);
+	int index=dist(mt);
+
+	Entity* entity = old_list[index];
+	new_list.push_back(entity);
+	old_list.erase(old_list.begin()+index);    	
+    }
+    _entity_list=new_list;
 }
